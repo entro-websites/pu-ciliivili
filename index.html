@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PU Čili i Vili - Predškolska ustanova Kragujevac</title>
+<meta name="description" content="PU Čili i Vili - privatna verifikovana predškolska ustanova u Kragujevcu. Jaslice, vrtić, NTC program i celodnevni boravak za školsku decu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --accent: #f7941d;
+    --accent-dark: #c96f05;
+    --accent-darker: #8f5004;
+    --accent-soft: #fff1dc;
+    --accent-soft2: #ffe3b8;
+    --accent-glow: rgba(247, 148, 29, 0.18);
+    --text: #2b2420;
+    --text-muted: rgba(43, 36, 32, 0.68);
+    --text-faint: rgba(43, 36, 32, 0.45);
+    --bg: #fffdfa;
+    --radius-btn: 999px;
+    --radius-card: 26px;
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.15;
+  }
+
+  p { color: var(--text-muted); }
+
+  a { text-decoration: none; color: inherit; }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    padding: 6px 16px;
+    border-radius: var(--radius-btn);
+    margin-bottom: 16px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px 32px;
+    border-radius: var(--radius-btn);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 10px 24px var(--accent-glow);
+  }
+  .btn-primary:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px var(--accent-glow);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--accent-dark);
+    border: 2px solid var(--accent);
+  }
+  .btn-outline:hover {
+    background: var(--accent-soft);
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 253, 250, 0.98);
+    border-bottom: 1px solid rgba(43, 36, 32, 0.08);
+    transition: backdrop-filter 0.3s ease, background 0.3s ease;
+  }
+  header.scrolled {
+    background: rgba(255, 253, 250, 0.85);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+  }
+  .logo-link img {
+    height: 56px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav-links a {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--accent-dark); }
+
+  .nav-cta { display: flex; align-items: center; gap: 20px; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .hamburger span {
+    display: block;
+    height: 3px;
+    width: 28px;
+    background: var(--accent-dark);
+    border-radius: 3px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 20px;
+  }
+  .mobile-menu a {
+    padding: 14px 4px;
+    font-weight: 600;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(43, 36, 32, 0.08);
+  }
+  .mobile-menu .btn { margin-top: 14px; width: 100%; justify-content: center; }
+
+  @media (max-width: 991px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu.open { display: flex; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    background-image: linear-gradient(180deg, rgba(20, 14, 6, 0.55), rgba(20, 14, 6, 0.65)), url('assets/photo-5962_rs1_872x318_cr872x318_0_0.jpg');
+    background-size: cover;
+    background-position: center;
+    padding-top: 110px;
+    padding-bottom: 110px;
+  }
+  .hero-inner {
+    max-width: 720px;
+  }
+  .hero h1 {
+    color: #ffffff;
+    font-size: clamp(36px, 5.5vw, 58px);
+    font-weight: 800;
+    margin-bottom: 22px;
+  }
+  .hero p {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 19px;
+    max-width: 540px;
+    margin-bottom: 36px;
+  }
+
+  /* ---------- SECTIONS GENERIC ---------- */
+  section {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+  @media (max-width: 768px) {
+    section { padding-top: 64px; padding-bottom: 64px; }
+    .hero { padding-top: 72px; padding-bottom: 72px; }
+  }
+
+  .section-head {
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+  .section-head h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: 16px;
+  }
+  .section-head p { font-size: 17px; max-width: 65ch; }
+
+  /* ---------- BOL UVOD ---------- */
+  .intro {
+    background: var(--accent-soft);
+  }
+  .intro .wrap {
+    max-width: 880px;
+    text-align: center;
+  }
+  .intro p {
+    font-size: 20px;
+    color: var(--text);
+    max-width: 65ch;
+    margin: 0 auto 14px auto;
+  }
+
+  /* ---------- USLUGE ---------- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  .service-card {
+    background: #ffffff;
+    border: 1px solid rgba(43, 36, 32, 0.08);
+    border-radius: var(--radius-card);
+    padding: 36px;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .service-card:hover {
+    box-shadow: 0 24px 48px rgba(43, 36, 32, 0.08);
+    transform: translateY(-4px);
+  }
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .service-card h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+  }
+  .service-card p { font-size: 15.5px; }
+  .badge-license {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--accent-darker);
+    background: var(--accent-soft2);
+    padding: 5px 14px;
+    border-radius: var(--radius-btn);
+  }
+
+  /* ---------- TIM ---------- */
+  .team-section {
+    background: var(--accent-soft);
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 991px) {
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .team-grid { grid-template-columns: 1fr; }
+  }
+  .team-card {
+    background: #ffffff;
+    border-radius: var(--radius-card);
+    padding: 28px 24px;
+    text-align: left;
+  }
+  .team-card .service-icon { margin-bottom: 16px; }
+  .team-card h4 { font-size: 17px; margin-bottom: 6px; }
+  .team-card p { font-size: 14.5px; }
+
+  /* ---------- O BRENDU ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+  .about-img img {
+    border-radius: var(--radius-card);
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 0 30px 60px rgba(43, 36, 32, 0.12);
+  }
+  .about-text h2 {
+    font-size: clamp(28px, 4vw, 38px);
+    margin-bottom: 20px;
+  }
+  .about-text p { font-size: 16.5px; margin-bottom: 16px; max-width: 58ch; }
+  .about-list {
+    list-style: none;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .about-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15.5px;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ---------- GALERIJA ---------- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+  .gallery-item {
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.06); }
+
+  /* ---------- AKTUELNOSTI ---------- */
+  .events-section { background: var(--accent-soft); }
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 768px) {
+    .events-grid { grid-template-columns: 1fr; }
+  }
+  .event-card {
+    background: #ffffff;
+    border-radius: var(--radius-card);
+    padding: 30px;
+  }
+  .event-card h4 { font-size: 18px; margin-bottom: 10px; }
+  .event-card p { font-size: 15px; }
+
+  /* ---------- KONTAKT / CTA ---------- */
+  .contact-section {
+    position: relative;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+  .contact-info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 28px;
+  }
+  .contact-info-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .contact-info-list .label {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-faint);
+    margin-bottom: 2px;
+  }
+
+  .contact-form {
+    background: var(--accent-soft);
+    border-radius: var(--radius-card);
+    padding: 40px;
+  }
+  .contact-form h3 { font-size: 22px; margin-bottom: 8px; }
+  .contact-form > p { font-size: 15px; margin-bottom: 24px; }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 480px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(43, 36, 32, 0.15);
+    background: #ffffff;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .contact-form textarea { resize: vertical; min-height: 110px; }
+  .contact-form .btn { width: 100%; justify-content: center; }
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final {
+    background: linear-gradient(135deg, var(--accent-darker), var(--accent-dark));
+    border-radius: var(--radius-card);
+    text-align: center;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    margin-left: 24px;
+    margin-right: 24px;
+    max-width: 1232px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-final h2 {
+    color: #ffffff;
+    font-size: clamp(26px, 4vw, 36px);
+    margin-bottom: 14px;
+  }
+  .cta-final p {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 50ch;
+    margin: 0 auto 30px auto;
+  }
+  .cta-final .btn-primary {
+    background: #ffffff;
+    color: var(--accent-darker);
+  }
+  .cta-final .btn-primary:hover {
+    background: var(--accent-soft);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid rgba(43, 36, 32, 0.08);
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+  .footer-grid img { height: 48px; }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-links a { font-size: 14.5px; font-weight: 600; color: var(--text-muted); }
+  .footer-links a:hover { color: var(--accent-dark); }
+  .footer-bottom {
+    font-size: 13.5px;
+    color: var(--text-faint);
+    text-align: center;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.pending {
+    opacity: 0.001;
+    transform: translateY(12px);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap nav-bar">
+    <a href="#hero" class="logo-link">
+      <img src="assets/logo.png" alt="Logo PU Čili i Vili">
+    </a>
+    <nav class="nav-links">
+      <a href="#o-nama">O nama</a>
+      <a href="#usluge">Usluge</a>
+      <a href="#tim">Stručni tim</a>
+      <a href="#galerija">Galerija</a>
+      <a href="#aktuelnosti">Aktuelnosti</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#kontakt" class="btn btn-primary">Prijavi dete za upis</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Otvori meni">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu wrap" id="mobile-menu">
+    <a href="#o-nama">O nama</a>
+    <a href="#usluge">Usluge</a>
+    <a href="#tim">Stručni tim</a>
+    <a href="#galerija">Galerija</a>
+    <a href="#aktuelnosti">Aktuelnosti</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#kontakt" class="btn btn-primary">Prijavi dete za upis</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="wrap hero-inner">
+      <h1>Vrtić u kom tvoje dete uči kroz igru, ne samo čeka da prođe dan</h1>
+      <p>Jaslice, vrtić i celodnevni boravak za školarce u Kragujevcu, uz NTC program i stručni tim koji svaki dan prati razvoj tvog deteta.</p>
+      <a href="#kontakt" class="btn btn-primary">Zakaži obilazak vrtića</a>
+    </div>
+  </section>
+
+  <!-- BOL UVOD -->
+  <section class="intro">
+    <div class="wrap">
+      <p>Tražiš mesto gde će tvoje dete biti bezbedno, ali to ti nije dovoljno. Želiš da neko stručan prati kako uči, kako se igra sa drugom decom i kako napreduje svaki mesec.</p>
+      <p>Kod nas dete ne čeka da prođe vreme do dolaska po njega. Radi, igra se i uči po programu koji ima licencu.</p>
+    </div>
+  </section>
+
+  <!-- USLUGE -->
+  <section id="usluge">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Šta nudimo</span>
+        <h2>Program za svaki uzrast, od jaslica do škole</h2>
+        <p>Od prvih koraka do polaska u prvi razred, dete ostaje u istom okruženju koje poznaje i u kom se oseća sigurno.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M8 4l4 4 4-4"/><path d="M4 11h16l-1 9H5z"/></svg>
+          </div>
+          <h3>Jaslice</h3>
+          <p>Za najmlađe, od jasleniog uzrasta. Nega, rutina i prve igre uz vaspitače i medicinske sestre koje su stalno uz decu.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <h3>Vrtić</h3>
+          <p>Predškolski uzrast do polaska u školu. Učenje kroz igru, pripreme za školu i razvoj samostalnosti svaki dan.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <h3>NTC program</h3>
+          <p>Radimo po licenciranom NTC programu koji podstiče brže i kvalitetnije razmišljanje kod dece kroz pokret i igru.</p>
+          <span class="badge-license">Licencirani program</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.17L4 17.17z"/></svg>
+          </div>
+          <h3>Celodnevni boravak za školarce</h3>
+          <p>Za decu koja već idu u školu, a roditeljima treba sigurno mesto za ostatak dana, uz pomoć oko domaćih zadataka.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STRUČNI TIM -->
+  <section class="team-section" id="tim">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Stručni tim</span>
+        <h2>Oko tvog deteta radi ceo tim, ne samo jedna osoba</h2>
+        <p>Svaki član tima ima svoju ulogu, a svi zajedno prate napredak deteta kroz celu godinu.</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+          </div>
+          <h4>Vaspitači</h4>
+          <p>Vode decu kroz dnevne aktivnosti, igru i učenje, grupu po grupu, uzrast po uzrast.</p>
+        </div>
+        <div class="team-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-4.35-9-8.5C1 8.5 3 5 6.5 5c2 0 3.2 1 3.2 1S11 4 13.5 5C17 5 19 8.5 17.9 12.5 15.4 16.65 12 21 12 21z"/></svg>
+          </div>
+          <h4>Medicinske sestre</h4>
+          <p>Brinu o zdravlju i higijeni dece, posebno u jaslenom uzrastu, svaki dan.</p>
+        </div>
+        <div class="team-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <h4>Pedagog</h4>
+          <p>Planira program rada i prati kako se svako dete razvija kroz godine boravka.</p>
+        </div>
+        <div class="team-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3 2.45c-.63.14-1 .7-1 1.35v.2"/><path d="M12 17h.01"/></svg>
+          </div>
+          <h4>Psiholog</h4>
+          <p>Prati emocionalni razvoj deteta i uključuje se kad god je roditelju ili detetu to potrebno.</p>
+        </div>
+        <div class="team-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v4"/></svg>
+          </div>
+          <h4>Logoped</h4>
+          <p>Radi na govoru i izgovoru glasova, individualno sa decom kojima je to potrebno.</p>
+        </div>
+        <div class="team-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18"/><path d="M12 3a15 15 0 0 0 0 18"/></svg>
+          </div>
+          <h4>Profesor engleskog</h4>
+          <p>Uvodi decu u engleski jezik kroz pesmice, igru i svakodnevne situacije, bez pritiska.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O BRENDU -->
+  <section id="o-nama">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-img">
+          <img src="assets/photo-5964_rs1_872x318_cr872x318_0_0.jpg" alt="Unutrašnji prostor vrtića Čili i Vili sa stolovima i igračkama">
+        </div>
+        <div class="about-text">
+          <h2>Verifikovana ustanova u Kragujevcu, sa toplinom koju dete oseti odmah</h2>
+          <p>PU Čili i Vili je privatna predškolska ustanova koja radi po verifikovanom programu, od jasleniog uzrasta do polaska u školu.</p>
+          <p>Vodimo računa da prostor bude veseo i bezbedan, a program stručan. Dete dolazi kod nas da se igra, ali i da svaki dan nauči nešto novo.</p>
+          <ul class="about-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Verifikovana predškolska ustanova
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Program od jaslica do polaska u školu
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Celodnevni boravak i za decu školskog uzrasta
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIJA -->
+  <section id="galerija">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Galerija</span>
+        <h2>Pogledaj kako izgleda dan kod nas</h2>
+        <p>Dvorište, igraonica i prostor za druženje, onakvi kakvi zaista jesu.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="assets/photo-5962_rs1_872x318_cr872x318_0_0.jpg" alt="Dvorište vrtića sa igralištem i šarenim suncobranima">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/photo-5963_rs1_872x318_cr872x318_0_0.jpg" alt="Ulaz u dvorište sa drvenom tablom Chilly Willy i cvećem">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/photo-5964_rs1_872x318_cr872x318_0_0.jpg" alt="Igraonica sa šarenim stolovima i dekoracijom na zidovima">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/photo-5965_rs1_872x318_cr872x318_0_0.jpg" alt="Žuti zid dvorišta oslikan pingvinima, cvećem i dugom">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/pic_10.jpg" alt="Devojčica sa vencem od cveća u dvorištu">
+        </div>
+        <div class="gallery-item" style="background:#ece6dd; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--text-faint); font-size:14px; font-weight:600; padding:16px;">
+          FOTOGRAFIJA IZ UČIONICE
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AKTUELNOSTI -->
+  <section class="events-section" id="aktuelnosti">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Aktuelnosti</span>
+        <h2>Šta se kod nas dešava tokom godine</h2>
+        <p>Pored svakodnevnog programa, organizujemo i dodatne aktivnosti koje decu dodatno motivišu i zbliže grupu.</p>
+      </div>
+      <div class="events-grid">
+        <div class="event-card">
+          <h4>Rođendanske proslave</h4>
+          <p>Organizujemo proslavu rođendana u vrtiću, sa dekoracijom i igrama prilagođenim uzrastu deteta.</p>
+        </div>
+        <div class="event-card">
+          <h4>Radionice i priredbe</h4>
+          <p>Kroz godinu pripremamo priredbe i radionice vezane za praznike i godišnja doba.</p>
+        </div>
+        <div class="event-card">
+          <h4>Druženja i izleti</h4>
+          <p>Deca zajedno izlaze iz učionice, upoznaju okolinu i uče kroz druženje van prostorija vrtića.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Kontakt</span>
+        <h2>Prijavi dete i zakaži obilazak</h2>
+        <p>Javi nam se preko forme ili nam pošalji poruku, a mi ti odgovaramo sa svim detaljima oko upisa.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div>
+          <h3 style="font-size:22px; margin-bottom:10px;">Gde smo i kako do nas</h3>
+          <p style="max-width:50ch;">PU Čili i Vili nalazi se u Kragujevcu. Tačnu adresu i termin za obilazak dogovaramo direktno preko poruke ili telefona.</p>
+          <ul class="contact-info-list">
+            <li>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span><span class="label">Lokacija</span>Kragujevac</span>
+            </li>
+            <li>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+              <span><span class="label">Kontakt</span>Pošalji upit preko forme, javljamo se brzo</span>
+            </li>
+            <li>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f7941d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+              <span><span class="label">Upis</span>Termin za obilazak vrtića dogovaramo individualno</span>
+            </li>
+          </ul>
+        </div>
+
+        <form class="contact-form" action="#" method="post">
+          <h3>Pošalji upit za upis</h3>
+          <p>Napiši nam uzrast deteta i kada ti odgovara obilazak, a mi se javljamo sa svim informacijama.</p>
+          <div class="form-row">
+            <input type="text" placeholder="Ime i prezime" required>
+            <input type="tel" placeholder="Broj telefona" required>
+          </div>
+          <input type="email" placeholder="Email adresa">
+          <textarea placeholder="Uzrast deteta i poruka za nas"></textarea>
+          <button type="submit" class="btn btn-primary">Pošalji upit za upis</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="padding-top:0; padding-bottom:96px;">
+    <div class="cta-final">
+      <h2>Spreman si da upišeš dete kod nas</h2>
+      <p>Javi se danas i dogovori termin za obilazak vrtića, upoznaj tim i prostor pre nego što doneseš odluku.</p>
+      <a href="#kontakt" class="btn btn-primary">Zakaži obilazak vrtića</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <img src="assets/logo.png" alt="Logo PU Čili i Vili">
+      <div class="footer-links">
+        <a href="#o-nama">O nama</a>
+        <a href="#usluge">Usluge</a>
+        <a href="#tim">Stručni tim</a>
+        <a href="#galerija">Galerija</a>
+        <a href="#aktuelnosti">Aktuelnosti</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      PU Čili i Vili, Kragujevac. Sva prava zadržana.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hamburger meni
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Sticky header blur efekat
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  // Scroll reveal (suptilni pomeraj, nikad trajno nevidljiv sadržaj)
+  document.querySelectorAll('.service-card, .team-card, .event-card, .gallery-item').forEach(el => {
+    el.classList.add('reveal', 'pending');
+  });
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          entry.target.classList.remove('pending');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.remove('pending'));
+  }
+</script>
+
+</body>
+</html>
